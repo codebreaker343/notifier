@@ -21,4 +21,10 @@ export class TemplateService {
   async findAll(): Promise<Template[]> {
     return await this.templateRepository.find();
   }
+
+  async find(templateId: number): Promise<Template> {
+    return await this.templateRepository.findOneBy({
+      id: templateId,
+    });
+  }
 }
