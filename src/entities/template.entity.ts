@@ -6,5 +6,5 @@ export class Template {
   id: number;
 
   @Column({ unique: true })
-  template: string;
+  content: string;
 }
