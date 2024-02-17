@@ -1,73 +1,75 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+## For your eyes only, Cosmofeed team
+- I have used NestJS + TS on top of NodeJS to build this service
+- I have developed this service between 3:30 AM and 5:30 AM
+- I have not integrated any third-party notifications API as all of them were behind a paywall and I am a classic middle-class Indian
+- Here is my most notable project: https://unacademy.com/compete/
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
-```bash
-$ npm install
-```
+## Pre-requisites
+- Docker
+- Docker Compose
 
 ## Running the app
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+$ docker-compose up
 ```
 
-## Test
+## How to test things out?
 
 ```bash
-# unit tests
-$ npm run test
+# create user
+$ curl --location 'http://localhost:3000/user' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "contactNumber": "9766837161",
+    "email": "deore.venkatesh@gmail.com"
+}'
 
-# e2e tests
-$ npm run test:e2e
+# fetch users
+$ curl --location 'http://localhost:3000/user'
 
-# test coverage
-$ npm run test:cov
+# create template
+$ curl --location 'http://localhost:3000/template' \
+--header 'Content-Type: application/json' \
+--data '{
+    "content": "Hello from {{organisation}}. We are based out of {{country}}"
+}'
+
+# fetch templates
+$ curl --location 'http://localhost:3000/template'
+
+# send SMS
+$ curl --location 'http://localhost:3000/notification/sms' \
+--header 'Content-Type: application/json' \
+--data '{
+    "userId": 1,
+    "templateId": 1,
+    "payload": {
+        "organisation" : "cosmofeed",
+        "country": "India"
+    }
+}'
+
+# send Email
+$ curl --location 'http://localhost:3000/notification/email' \
+--header 'Content-Type: application/json' \
+--data '{
+    "userId": 1,
+    "templateId": 1,
+    "payload": {
+        "organisation" : "cosmofeed",
+        "country": "India"
+    }
+}'
 ```
 
-## Support
+## To-Do list
+- Integrate third-party APIs for SMS & E-mail
+- Integrate async-queue for fanning out notifications optimally
+- Integrate AWS SNS for push notifications
+- Add unit tests (Lol, who am I kidding)
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+## Connect with me
+- LinkedIn: https://www.linkedin.com/in/venkatesh-deore/
+- X: https://x.com/venkatesh_deore
