@@ -4,6 +4,10 @@
 - I have not integrated any third-party notifications API as all of them were behind a paywall and I am a classic middle-class Indian
 - Here is my most notable project: https://unacademy.com/compete/
 
+## Design
+<img width="928" alt="Screenshot 2024-02-17 at 5 29 02 AM" src="https://github.com/codebreaker343/notifier/assets/26453487/3f900a7e-387d-43b1-890d-0e7575906b80">
+
+
 ## Pre-requisites
 - Docker
 - Docker Compose
